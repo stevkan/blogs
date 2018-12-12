@@ -119,13 +119,13 @@ Before you can get started you will need a local copy of the solution. Navigate 
    
 8. Open and run your locally hosted bot.
    
-9.  Test your bot on a channel (Test in Web Chat, Skype, Teams, etc). User data is captured and logged as activity occurs.
+9. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc). User data is captured and logged as activity occurs.
 
     - When using the Bot Framework Emulator: The endpoint entered in Emulator must be the service bus endpoint saved in your Azure Web Bot **Settings** blade, under **Messaging Endpoint**.
 
 ![results](images/results.jpg)
 
-10.   Once testing is completed, you can compile the project into an executable.
+10. Once testing is completed, you can compile the project into an executable.
 
     a. Right click the project folder in Visual Studio and select **Build**.
 
@@ -171,13 +171,13 @@ Before you can get started you will need a local copy of the solution. Navigate 
    
 8. Open and run your locally hosted bot.
    
-9.  Test your bot on a channel (Test in Web Chat, Skype, Teams, etc). User data is captured and logged as activity occurs.
+9. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc). User data is captured and logged as activity occurs.
 
     - When using the Bot Framework Emulator: The endpoint entered in Emulator must be the service bus endpoint saved in your Azure Web Bot **Settings** blade, under **Messaging Endpoint**.
 
 ![results](images/results.jpg)
 
-10.  Once testing is completed, you can compile the project into an executable.
+10. Once testing is completed, you can compile the project into an executable.
 
     a. Right click the project folder in Visual Studio and select **Publish**.
 
