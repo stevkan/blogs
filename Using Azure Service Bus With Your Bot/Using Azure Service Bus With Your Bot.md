@@ -21,7 +21,7 @@ To get started, follow these steps:
 
 3. Search for **Relay** in the search field and select this option from the list once displayed.
    
-![Select Relay](images\select_relay.jpg)
+![Select Relay](images/select_relay.jpg)
 
 4. Click **Create** to begin building your service bus relay resource.
 
@@ -41,7 +41,7 @@ To get started, follow these steps:
 
 12. Once the new policy has been created, select it and copy down the **Primary Key**.
 
-![Shared Access Policies](images\root_sas.jpg)
+![Shared Access Policies](images/root_sas.jpg)
 
 13. (Optional) If you plan on compiling the .Net Core version of the project, a Hybrid Connection will need to be created manually.
     
