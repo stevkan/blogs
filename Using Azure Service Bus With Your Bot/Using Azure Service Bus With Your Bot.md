@@ -32,23 +32,23 @@ To get started, follow these steps:
 
 5. Complete each field (Name, Subscription, Resource group, Location) to create the relay namespace.
 
-7. Click **Create** to finalize the creation process.
+6. Click **Create** to finalize the creation process.
 
-8. Once completed, an overview of the deployment is shown. Click the resource name you just created, under **Resource**.
+7. Once completed, an overview of the deployment is shown. Click the resource name you just created, under **Resource**.
 
 ![Service Bus Deployment](images/service_bus_deployment.jpg)
 
-9. Select the **Shared access policies** blade, located under **Settings**.
+8. Select the **Shared access policies** blade, located under **Settings**.
 
-10.  Click the **+ Add** button to create a new policy. Enter a **Policy name** and check both **Send** and **Listen**. For security reasons, be sure to leave **Manage** unchecked.
+9.  Click the **+ Add** button to create a new policy. Enter a **Policy name** and check both **Send** and **Listen**. For security reasons, be sure to leave **Manage** unchecked.
 
-11. Copy the policy name down and Click **Create**.
+10. Copy the policy name down and Click **Create**.
 
-12. Once the new policy has been created, select it and copy down the **Primary Key**.
+11. Once the new policy has been created, select it and copy down the **Primary Key**.
 
 ![Shared Access Policies](images/root_sas.jpg)
 
-13. (Optional) If you plan on compiling the .Net Core version of the project, a Hybrid Connection will need to be created manually.
+12. (Optional) If you plan on compiling the .Net Core version of the project, a Hybrid Connection will need to be created manually.
     
     a. Select **Hybrid Connections** to open the blade.
 
@@ -68,7 +68,7 @@ To get started, follow these steps:
 
 ![hc Shared Access Policies](images/hc_sas.jpg)
 
-14. Return to the Azure portal dashboard.
+13. Return to the Azure portal dashboard.
 
 ## Azure Bot Service
 
@@ -94,9 +94,9 @@ Before you can get started you will need a local copy of the solution. Navigate 
    
     a. "SBNamespace" is the name of your service bus created earlier. Enter the value in place of **[your namespace]**.
     
-    b. "SBPolicyName" is the name of the shared access policy created in steps 10 through 12 during the service bus set up process. Enter the value in place of **"RootManageSharedAccessKey"**.
+    b. "SBPolicyName" is the name of the shared access policy created in steps 9 through 11 during the service bus set up process. Enter the value in place of **"RootManageSharedAccessKey"**.
     
-    c. "SBPolicyKey" is the value to the shared access policy created in steps 10 through 12 during the service bus set up process. Enter the value in place of **[your secret]**.
+    c. "SBPolicyKey" is the value to the shared access policy created in steps 9 through 11 during the service bus set up process. Enter the value in place of **[your secret]**.
    
 4. "SBRelayName" is the WCF relay to be used. Remember, this relay is programmatically created and only exists on your machine. Create a new, unused name and enter the value in place of **[your relay name]**.
    
@@ -147,17 +147,17 @@ Before you can get started you will need a local copy of the solution. Navigate 
    
     a. "RelayNamespace" is the name of your service bus created earlier. Enter the value in place of **[your namespace]**.
 
-    b. "ConnectionName" is the name of the hybrid connection created in step 13. Enter the value in place of **[your relay name]**.
+    b. "ConnectionName" is the name of the hybrid connection created in step 12. Enter the value in place of **[your relay name]**.
 
-    c. "KeyName" is the name of the shared access policy created in steps 10 through 12 during the service bus set up process. Enter the value in place of **"RootManageSharedAccessKey"**.
+    c. "KeyName" is the name of the shared access policy created in steps 9 through 11 during the service bus set up process. Enter the value in place of **"RootManageSharedAccessKey"**.
 
-    d. "Key" is the value to the shared access policy created in steps 10 through 12 during the service bus set up process. Enter the value in place of **[your secret]**.
+    d. "Key" is the value to the shared access policy created in steps 9 through 11 during the service bus set up process. Enter the value in place of **[your secret]**.
       
 4. "TargetServiceAddress" sets the port to be used for localhost. The port number should match the port used by your bot. Enter a value in place of the **[Your Bot URL and Port]**. For example, "http://localhost:3978". Ensure **http** is used and not **https**.
    
 ![appsettings.json](images/appsettings.jpg)
    
-6. Before testing the relay, your Azure Web Bot's messaging endpoint must be updated to match the relay.
+5. Before testing the relay, your Azure Web Bot's messaging endpoint must be updated to match the relay.
    
     a. If you are not already logged in, navigate to the Azure portal and log in.
     
@@ -173,17 +173,17 @@ Before you can get started you will need a local copy of the solution. Navigate 
     
     g. Click **Save** when completed.
    
-7. In Visual Studio, press **F5** to run the project.
+6. In Visual Studio, press **F5** to run the project.
    
-8. Open and run your locally hosted bot.
+7. Open and run your locally hosted bot.
    
-9. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc). User data is captured and logged as activity occurs.
+8. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc). User data is captured and logged as activity occurs.
 
     - When using the Bot Framework Emulator: The endpoint entered in Emulator must be the service bus endpoint saved in your Azure Web Bot **Settings** blade, under **Messaging Endpoint**.
 
 ![results](images/hc-results.jpg)
 
-10. Once testing is completed, you can compile the project into an executable.
+9. Once testing is completed, you can compile the project into an executable.
 
     a. Right click the project folder in Visual Studio and select **Publish**.
 
