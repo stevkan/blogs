@@ -199,3 +199,5 @@ Before you can get started you will need a local copy of the solution. Navigate 
     - **Target Runtime** to "win-x64"
 
     f. Click **Save** and then **Publish**
+
+    g. The .exe will output to the **/bin/debug** folder along with a number of additional files. All the files are necessary to run and should be included when moving the .exe to a new folder/location.
