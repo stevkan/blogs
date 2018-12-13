@@ -11,7 +11,12 @@ To utilize these capabilities, you need to have
 
 ## Azure Service Bus
 
-Azure Service Bus has several features that make it an excellent option and alternative to ngrok: The resource owner manages and controls the environment; applications connect across a secure cloud messaging service; locally debug bot channel performance without your data needing to pass international boundaries; works across firewalls and VPNs; and, it allows for multiple application connections.
+Azure Service Bus has several features that make it an excellent option and alternative to ngrok:
+- The resource owner manages and controls the environment.
+- Applications connect across a secure cloud messaging service.
+- Locally debug bot channel performance without your data needing to pass international boundaries.
+- Works across firewalls and VPNs.
+- And, it allows for multiple application connections.
 
 To get started, follow these steps:
 
