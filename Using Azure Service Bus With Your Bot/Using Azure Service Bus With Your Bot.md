@@ -135,6 +135,7 @@ Before you can get started you will need a local copy of the solution. Navigate 
     a. Right click the project folder in Visual Studio and select **Build**.
 
     b. The .exe will output to the **/bin/debug** folder along with a number of additional files. All the files are necessary to run and should be included when moving the .exe to a new folder/location.
+    - The **app.config** is located in the same folder and can be edited as credentials change without needing to recompile the project.
 
 ### Building with .Net Core
 
@@ -201,3 +202,4 @@ Before you can get started you will need a local copy of the solution. Navigate 
     f. Click **Save** and then **Publish**
 
     g. The .exe will output to the **/bin/debug** folder along with a number of additional files. All the files are necessary to run and should be included when moving the .exe to a new folder/location.
+    - The **appsettings.json** is located in the same folder and can be edited as credentials change without needing to recompile the project.
