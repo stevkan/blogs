@@ -1,9 +1,9 @@
-# Routing Your Locally Hosted Bot Using Azure Service Bus
+# Routing Your Locally Hosted Bot Using Azure Service Bus Relays
 ##### by Steven Kanberg <div style="text-align: right">December 12, 2018</div>
 
-This blog explains how to set up an Azure Service Bus resource, create the necessary relays in Visual Studio, and connect your locally hosted bot for testing across the various channels available in the Bot Framework ecosystem.
+This blog explains how to set up an Azure Service Bus Relay resource, create the necessary relays in Visual Studio, and connect your locally hosted bot for testing across the various channels available in the Bot Framework ecosystem.
 
-To utilize these capabilities, you need to have
+## Prerequisites:
 
 - An Azure account (create a new account [here](https://azure.microsoft.com/en-us/free/))
 - Access to Visual Studio
@@ -11,12 +11,12 @@ To utilize these capabilities, you need to have
 
 ## Azure Service Bus
 
-Azure Service Bus has several features that make it an excellent option and alternative to ngrok:
-- The resource owner manages and controls the environment.
-- Applications connect across a secure cloud messaging service.
+[Azure Service Bus Relays](https://docs.microsoft.com/en-us/azure/service-bus-relay/) have several features that make it an excellent option and alternative to ngrok:
 - Locally debug bot channel performance without your data needing to pass international boundaries.
-- Works across firewalls and VPNs.
-- And, it allows for multiple application connections.
+- Facilitates secure connectivity between on-premise and cloud environments.
+- Works without changes to corporate firewalls and network infrastructure.
+- The resource owner manages and controls the environment.
+- It allows for multiple application connections.
 
 To get started, follow these steps:
 
