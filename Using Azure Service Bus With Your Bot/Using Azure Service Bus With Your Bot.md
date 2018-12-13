@@ -128,7 +128,7 @@ Before you can get started you will need a local copy of the solution. Navigate 
 
     - When using the Bot Framework Emulator: The endpoint entered in Emulator must be the service bus endpoint saved in your Azure Web Bot **Settings** blade, under **Messaging Endpoint**.
 
-![results](images/results.jpg)
+![results](images/wcf-results.jpg)
 
 10. Once testing is completed, you can compile the project into an executable.
 
@@ -181,7 +181,7 @@ Before you can get started you will need a local copy of the solution. Navigate 
 
     - When using the Bot Framework Emulator: The endpoint entered in Emulator must be the service bus endpoint saved in your Azure Web Bot **Settings** blade, under **Messaging Endpoint**.
 
-![results](images/results.jpg)
+![results](images/hc-results.jpg)
 
 10. Once testing is completed, you can compile the project into an executable.
 
