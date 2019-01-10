@@ -7,6 +7,9 @@ This blog explains how to set up an Azure Service Bus Relay resource, create the
 
 - An Azure account (create a new account [here](https://azure.microsoft.com/en-us/free/))
 - Access to Visual Studio
+  - .Net Framework 4.7 or .Net Core 2.1 (project dependent)
+- Access to VS Code
+  - dotnet (.Net Core CLI - read about and install from [here](https://docs.microsoft.com/en-us/dotnet/core/tools/?tabs=netcore2x))
 - A bot developed using one of the Bot Framework v4 SDKs (create your first bot [here](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0))
 
 ## Azure Service Bus
@@ -38,7 +41,7 @@ To get started, follow these steps:
 
 ![Service Bus Deployment](images/service_bus_deployment.jpg)
 
-8. Select the **Shared access policies** blade, located under **Settings**.
+8. Select the **Shared access policies** blade located under **Settings**.
 
 9.  Click the **+ Add** button to create a new policy. Enter a **Policy name** and check both **Send** and **Listen**. For security reasons, be sure to leave **Manage** unchecked.
 
@@ -52,13 +55,13 @@ To get started, follow these steps:
     
     a. Select **Hybrid Connections** to open the blade.
 
-    b. Click **+ Hybrid Connection**. Enter a **Name**, uncheck **Requires Client Authentication**, and leave all other values empty.
+    b. Click **+ Hybrid Connection**. Enter a **Name** and leave all other values empty. If **Requires Client Authentication** is checked, clear the checkbox as client authentication is not required.
 
     c. Copy the name down and click **Create**.
 
     d. Once the hybrid connection has been created, select it. This will open the respective blade.
 
-    e. Select the **Shared access policies** blade, located under **Settings**.
+    e. Select the **Shared access policies** blade located under **Settings**.
 
     f. Click the **+ Add** button to create a new policy. Enter a **Policy name** and check both **Send** and **Listen**. For security reasons, be sure to leave **Manage** unchecked.
 
@@ -76,11 +79,17 @@ An Azure Web Bot is required for routing between your locally hosted bot and the
 
 ## Azure Service Bus Bot Relay
 
-The Azure Service Bus Bot Relay is a GitHub project that must be compiled in  Visual Studio and run locally to monitor your localhost address. It serves as the connection between your locally hosted bot and the service bus routing through your Azure Web Bot.
+The Azure Service Bus Bot Relay is a GitHub project that can be compiled in either Visual Studio or VS Code and run locally to monitor your localhost address. It serves as the connection between your locally hosted bot and the service bus routing through your Azure Web Bot.
 
-It functions similar to ngrok’s tunneling service by constructing a secure messaging service on Azure from which the bot can route through. In this way, you can debug your locally hosted bot on different channels.
+It functions like ngrok’s tunneling service by constructing a secure messaging service on Azure from which the bot can route through. In this way, you can debug your locally hosted bot on different channels.
 
-This solution offers two options for compiling: .Net Framework and .Net Core. Using either will provide the same connectivity, however using Core will run in both the Windows and Mac OS environments. Also note, the Framework option programmatically creates a WCF relay locally on your machine whereas the Core option requires manually creating the hybrid connection on Azure.
+This solution offers two options for compiling: .Net Framework and .Net Core. Using either will provide the same connectivity, however, note that:
+
+- Visual Studio can run and compile both .Net Framework and .Net Core.
+- VS Code only supports running and compiling .Net Core projects via the dotnet command.
+- .Net Framework programmatically creates a WCF relay when started. This relay is viewable online in your Azure Service Bus for the duration the relay is running locally.
+- .Net Core requires manually creating the hybrid connection on Azure. Hybrid connections should not be shared by multiple users as the activity from each will conflict with each other. Instead, create a separate hybrid connection for each user.
+- .Net Core provides cross-platform functionality and will run in both the Windows and Mac OS environments.
 
 Before you can get started you will need a local copy of the solution. Navigate to the project’s GitHub [page](https://github.com/gabog/AzureServiceBusBotRelay) in a browser and clone the solution to your machine.
 
@@ -100,7 +109,7 @@ Before you can get started you will need a local copy of the solution. Navigate 
    
 4. "SBRelayName" is the WCF relay to be used. Remember, this relay is programmatically created and only exists on your machine. Create a new, unused name and enter the value in place of **[your relay name]**.
    
-5. "TargetServiceAddress" sets the port to be used for localhost. The port number should match the port used by your bot. Enter a value in place of the "TODO" string part. For example, "http://localhost:3978". Ensure **http** is used and not **https**.
+5. "TargetServiceAddress" sets the port to be used for localhost. The address and port number should match the address and port used by your bot. Enter a value in place of the "TODO" string part. For example, "http://localhost:3978".
    
 ![App.config](images/appConfig.jpg)
    
@@ -124,18 +133,18 @@ Before you can get started you will need a local copy of the solution. Navigate 
    
 8. Open and run your locally hosted bot.
    
-9. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc). User data is captured and logged as activity occurs.
+9. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc.). User data is captured and logged as activity occurs.
 
     - When using the Bot Framework Emulator: The endpoint entered in Emulator must be the service bus endpoint saved in your Azure Web Bot **Settings** blade, under **Messaging Endpoint**.
 
-![results](images/wcf-results.jpg)
+![results](images/wcf-results-short.jpg)
 
 10. Once testing is completed, you can compile the project into an executable.
 
     a. Right click the project folder in Visual Studio and select **Build**.
 
-    b. The .exe will output to the **/bin/debug** folder along with a number of additional files. All the files are necessary to run and should be included when moving the .exe to a new folder/location.
-    - The **app.config** is located in the same folder and can be edited as credentials change without needing to recompile the project.
+    b. The .exe will output to the **/bin/debug** folder, along with other necessary files, located in the project’s directory folder. All the files are necessary to run and should be included when moving the .exe to a new folder/location.
+    - The **app.config** is in the same folder and can be edited as credentials change without needing to recompile the project.
 
 ### Building with .Net Core
 
@@ -153,7 +162,7 @@ Before you can get started you will need a local copy of the solution. Navigate 
 
     d. "Key" is the value to the shared access policy created in steps 9 through 11 during the service bus set up process. Enter the value in place of **[your secret]**.
       
-4. "TargetServiceAddress" sets the port to be used for localhost. The port number should match the port used by your bot. Enter a value in place of the **[Your Bot URL and Port]**. For example, "http://localhost:3978". Ensure **http** is used and not **https**.
+4. "TargetServiceAddress" sets the port to be used for localhost. The address and port number should match the address and port used by your bot. Enter a value in place of the **[Your Bot URL and Port]**. For example, "http://localhost:3978".
    
 ![appsettings.json](images/appsettings.jpg)
    
@@ -177,11 +186,11 @@ Before you can get started you will need a local copy of the solution. Navigate 
    
 7. Open and run your locally hosted bot.
    
-8. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc). User data is captured and logged as activity occurs.
+8. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc.). User data is captured and logged as activity occurs.
 
     - When using the Bot Framework Emulator: The endpoint entered in Emulator must be the service bus endpoint saved in your Azure Web Bot **Settings** blade, under **Messaging Endpoint**.
 
-![results](images/hc-results.jpg)
+![results](images/hc-results-short.jpg)
 
 9. Once testing is completed, you can compile the project into an executable.
 
@@ -201,5 +210,5 @@ Before you can get started you will need a local copy of the solution. Navigate 
 
     f. Click **Save** and then **Publish**
 
-    g. The .exe will output to the **/bin/debug** folder along with a number of additional files. All the files are necessary to run and should be included when moving the .exe to a new folder/location.
-    - The **appsettings.json** is located in the same folder and can be edited as credentials change without needing to recompile the project.
+    g. The .exe will output to the **/bin/debug** folder, along with other necessary files, located in the project’s directory folder. All the files are necessary to run and should be included when moving the .exe to a new folder/location.
+    - The **appsettings.json** is in the same folder and can be edited as credentials change without needing to recompile the project.
