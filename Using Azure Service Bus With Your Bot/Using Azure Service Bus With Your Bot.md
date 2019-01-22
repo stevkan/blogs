@@ -1,5 +1,5 @@
 # Routing Your Locally Hosted Bot Using Azure Service Bus Relays
-##### by Steven Kanberg <div style="text-align: right">December 12, 2018</div>
+##### by Steven Kanberg <div style="text-align: right">January 22, 2019</div>
 
 This blog explains how to set up an Azure Service Bus Relay resource, create the necessary relays in Visual Studio, and connect your locally hosted bot for testing across the various channels available in the Bot Framework ecosystem.
 
@@ -117,13 +117,13 @@ Before you can get started you will need a local copy of the solution. Navigate 
    
     a. Login to the Azure portal and open your Web App Bot.
     
-    d. Select **Settings** under Bot management to open the settings blade.
+    b. Select **Settings** under Bot management to open the settings blade.
     
-    e. In the **Messaging endpoint** field, enter the service bus namespace and relay. The relay should match the relay name entered in the **App.config** file and should not exist in Azure.
+    c. In the **Messaging endpoint** field, enter the service bus namespace and relay. The relay should match the relay name entered in the **App.config** file and should not exist in Azure.
     
-    f. Append **"/api/messages"** to the end to create the full endpoint to be used. For example, “https://example-service-bus.servicebus.windows.net/wcf-example-relay/api/messages".
+    d. Append **"/api/messages"** to the end to create the full endpoint to be used. For example, “https://example-service-bus.servicebus.windows.net/wcf-example-relay/api/messages".
     
-    g. Click **Save** when completed.
+    e. Click **Save** when completed.
    
 6. In Visual Studio, press **F5** to run the project.
    
@@ -168,13 +168,13 @@ Before you can get started you will need a local copy of the solution. Navigate 
    
     a. Login to the Azure portal and open your Web App Bot.
     
-    d. Select **Settings** under Bot management to open the settings blade.
+    b. Select **Settings** under Bot management to open the settings blade.
     
-    e. In the **Messaging endpoint** field, enter the service bus namespace and relay.
+    c. In the **Messaging endpoint** field, enter the service bus namespace and relay.
     
-    f. Append **"/api/messages"** to the end to create the full endpoint to be used. For example, “https://example-service-bus.servicebus.windows.net/hc1/api/messages".
+    d. Append **"/api/messages"** to the end to create the full endpoint to be used. For example, “https://example-service-bus.servicebus.windows.net/hc1/api/messages".
     
-    g. Click **Save** when completed.
+    e. Click **Save** when completed.
    
 5. In Visual Studio, press **F5** to run the project.
    
