@@ -107,19 +107,15 @@ Before you can get started you will need a local copy of the solution. Navigate 
     
     c. "SBPolicyKey" is the value to the shared access policy created in steps 9 through 11 during the service bus set up process. Enter the value in place of **[your secret]**.
    
-4. "SBRelayName" is the WCF relay to be used. Remember, this relay is programmatically created and only exists on your machine. Create a new, unused name and enter the value in place of **[your relay name]**.
+    d. "SBRelayName" is the WCF relay to be used. Remember, this relay is programmatically created and only exists on your machine. Create a new, unused name and enter the value in place of **[your relay name]**.
    
-5. "TargetServiceAddress" sets the port to be used for localhost. The address and port number should match the address and port used by your bot. Enter a value in place of the "TODO" string part. For example, "http://localhost:3978".
+4. "TargetServiceAddress" sets the port to be used for localhost. The address and port number should match the address and port used by your bot. Enter a value in place of the "TODO" string part. For example, "http://localhost:3978".
    
 ![App.config](images/appConfig.jpg)
    
-6. Before testing the relay, your Azure Web Bot's messaging endpoint must be updated to match the relay.
+5. Before testing the relay, your Azure Web Bot's messaging endpoint must be updated to match the relay.
    
-    a. If you are not already logged in, navigate to the Azure portal and log in.
-    
-    b. Select All resources in the sidebar menu.
-    
-    c. Search for your bot in the search field and select it from the displayed list.
+    a. Login to the Azure portal and open your Web App Bot.
     
     d. Select **Settings** under Bot management to open the settings blade.
     
@@ -129,17 +125,19 @@ Before you can get started you will need a local copy of the solution. Navigate 
     
     g. Click **Save** when completed.
    
-7. In Visual Studio, press **F5** to run the project.
+6. In Visual Studio, press **F5** to run the project.
    
-8. Open and run your locally hosted bot.
+7. Open and run your locally hosted bot.
    
-9. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc.). User data is captured and logged as activity occurs.
+8. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc.). User data is captured and logged as activity occurs.
 
     - When using the Bot Framework Emulator: The endpoint entered in Emulator must be the service bus endpoint saved in your Azure Web Bot **Settings** blade, under **Messaging Endpoint**.
 
-![results](images/wcf-results-short.jpg)
+![botbuilder-samples/18.bot-authentication](images/BotAuthExample.jpg)
 
-10. Once testing is completed, you can compile the project into an executable.
+![results](images/BotAuthResponse-wcf.jpg)
+
+9. Once testing is completed, you can compile the project into an executable.
 
     a. Right click the project folder in Visual Studio and select **Build**.
 
@@ -162,17 +160,13 @@ Before you can get started you will need a local copy of the solution. Navigate 
 
     d. "Key" is the value to the shared access policy created in steps 9 through 11 during the service bus set up process. Enter the value in place of **[your secret]**.
       
-4. "TargetServiceAddress" sets the port to be used for localhost. The address and port number should match the address and port used by your bot. Enter a value in place of the **[Your Bot URL and Port]**. For example, "http://localhost:3978".
+    e. "TargetServiceAddress" sets the port to be used for localhost. The address and port number should match the address and port used by your bot. Enter a value in place of the **[Your Bot URL and Port]**. For example, "http://localhost:3978".
    
 ![appsettings.json](images/appsettings.jpg)
    
-5. Before testing the relay, your Azure Web Bot's messaging endpoint must be updated to match the relay.
+4. Before testing the relay, your Azure Web App Bot's messaging endpoint must be updated to match the relay.
    
-    a. If you are not already logged in, navigate to the Azure portal and log in.
-    
-    b. Select All resources in the sidebar menu.
-    
-    c. Search for your bot in the search field and select it from the displayed list.
+    a. Login to the Azure portal and open your Web App Bot.
     
     d. Select **Settings** under Bot management to open the settings blade.
     
@@ -182,17 +176,19 @@ Before you can get started you will need a local copy of the solution. Navigate 
     
     g. Click **Save** when completed.
    
-6. In Visual Studio, press **F5** to run the project.
+5. In Visual Studio, press **F5** to run the project.
    
-7. Open and run your locally hosted bot.
+6. Open and run your locally hosted bot.
    
-8. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc.). User data is captured and logged as activity occurs.
+7. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc.). User data is captured and logged as activity occurs.
 
     - When using the Bot Framework Emulator: The endpoint entered in Emulator must be the service bus endpoint saved in your Azure Web Bot **Settings** blade, under **Messaging Endpoint**.
 
-![results](images/hc-results-short.jpg)
+![botbuilder-samples/18.bot-authentication](images/BotAuthExample.jpg)
 
-9. Once testing is completed, you can compile the project into an executable.
+![results](images/BotAuthResponse-hc.jpg)
+
+8. Once testing is completed, you can compile the project into an executable.
 
     a. Right click the project folder in Visual Studio and select **Publish**.
 
