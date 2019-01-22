@@ -109,11 +109,11 @@ Before you can get started you will need a local copy of the solution. Navigate 
    
     d. "SBRelayName" is the WCF relay to be used. Remember, this relay is programmatically created and only exists on your machine. Create a new, unused name and enter the value in place of **[your relay name]**.
    
-4. "TargetServiceAddress" sets the port to be used for localhost. The address and port number should match the address and port used by your bot. Enter a value in place of the "TODO" string part. For example, "http://localhost:3978".
+    e. "TargetServiceAddress" sets the port to be used for localhost. The address and port number should match the address and port used by your bot. Enter a value in place of the "TODO" string part. For example, "http://localhost:3978".
    
 ![App.config](images/appConfig.jpg)
    
-5. Before testing the relay, your Azure Web Bot's messaging endpoint must be updated to match the relay.
+4. Before testing the relay, your Azure Web Bot's messaging endpoint must be updated to match the relay.
    
     a. Login to the Azure portal and open your Web App Bot.
     
@@ -125,11 +125,11 @@ Before you can get started you will need a local copy of the solution. Navigate 
     
     e. Click **Save** when completed.
    
-6. In Visual Studio, press **F5** to run the project.
+5. In Visual Studio, press **F5** to run the project.
    
-7. Open and run your locally hosted bot.
+6. Open and run your locally hosted bot.
    
-8. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc.). User data is captured and logged as activity occurs.
+7. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc.). User data is captured and logged as activity occurs.
 
     - When using the Bot Framework Emulator: The endpoint entered in Emulator must be the service bus endpoint saved in your Azure Web Bot **Settings** blade, under **Messaging Endpoint**.
 
@@ -137,7 +137,7 @@ Before you can get started you will need a local copy of the solution. Navigate 
 
 ![results](images/BotAuthResponse-wcf.jpg)
 
-9. Once testing is completed, you can compile the project into an executable.
+8. Once testing is completed, you can compile the project into an executable.
 
     a. Right click the project folder in Visual Studio and select **Build**.
 
