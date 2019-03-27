@@ -1,5 +1,5 @@
 # Debugging Your Locally Hosted v4 Bot Using Azure Relays
-##### by Steven Kanberg <div style="text-align: right">January 22, 2019</div>
+##### by Steven Kanberg <div style="text-align: right">March 26, 2019</div>
 
 This blog explains how to set up an Azure Relay resource, create the necessary relays in Visual Studio, and connect your locally hosted bot for testing across the various channels available in the Bot Framework ecosystem.
 
