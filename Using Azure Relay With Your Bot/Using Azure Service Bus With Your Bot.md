@@ -1,7 +1,7 @@
-# Routing Your Locally Hosted Bot Using Azure Service Bus Relays
-##### by Steven Kanberg <div style="text-align: right">January 22, 2019</div>
+# Debugging Your Locally Hosted v4 Bot Using Azure Relays
+##### by Steven Kanberg <div style="text-align: right">March 26, 2019</div>
 
-This blog explains how to set up an Azure Service Bus Relay resource, create the necessary relays in Visual Studio, and connect your locally hosted bot for testing across the various channels available in the Bot Framework ecosystem.
+This blog explains how to set up an Azure Relay resource, create the necessary relays in Visual Studio, and connect your locally hosted bot for testing across the various channels available in the Bot Framework ecosystem.
 
 ## Prerequisites:
 
@@ -12,14 +12,20 @@ This blog explains how to set up an Azure Service Bus Relay resource, create the
   - dotnet (.Net Core CLI - read about and install from [here](https://docs.microsoft.com/en-us/dotnet/core/tools/?tabs=netcore2x))
 - A bot developed using one of the Bot Framework v4 SDKs (create your first bot [here](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0))
 
-## Azure Service Bus
+## Azure Relay
 
-[Azure Service Bus Relays](https://docs.microsoft.com/en-us/azure/service-bus-relay/) have several features that make it an excellent option and alternative to ngrok:
-- Locally debug bot channel performance without your data needing to pass international boundaries.
-- Facilitates secure connectivity between on-premise and cloud environments.
-- Works without changes to corporate firewalls and network infrastructure.
+[Azure Relays](https://docs.microsoft.com/en-us/azure/service-bus-relay/) has several features that make it an excellent option and alternative to ngrok:
+- You can debug your local v4 bot with Azure Relay.
 - The resource owner manages and controls the environment.
 - It allows for multiple application connections.
+- It is a suitable alternative to ngrok (read this blog to learn more about using ngrok).
+
+Please note the following:
+Azure Relay and Azure Service Bus relays are two closely related yet different resources. The steps provided here are specific to creating an Azure Relay resource.
+
+Corporate customers need to consider their organizational IT and network policies before using in a production environment.
+
+An equivalent JavaScript solution does not exist, yet. However, the relevant NPM libraries do and can be accessed here for development projects: azure-sb and azure-arm-relay.
 
 To get started, follow these steps:
 
@@ -31,15 +37,15 @@ To get started, follow these steps:
    
 ![Select Relay](images/select_relay.jpg)
 
-4. Click **Create** to begin building your service bus relay resource.
+1. Click **Create** to begin building your relay resource.
 
-5. Complete each field (Name, Subscription, Resource group, Location) to create the relay namespace.
+2. Complete each field (Name, Subscription, Resource group, Location) to create the relay namespace.
 
-6. Click **Create** to finalize the creation process.
+3. Click **Create** to finalize the creation process.
 
-7. Once completed, an overview of the deployment is shown. Click the resource name you just created, under **Resource**.
+4. Once completed, an overview of the deployment is shown. Click the resource name you just created, under **Resource**.
 
-![Service Bus Deployment](images/service_bus_deployment.jpg)
+![Relay Deployment](images/service_bus_deployment.jpg)
 
 8. Select the **Shared access policies** blade located under **Settings**.
 
@@ -75,19 +81,21 @@ To get started, follow these steps:
 
 ## Azure Bot Service
 
-An Azure Web Bot is required for routing between your locally hosted bot and the service bus. You can use a bot you have already created or follow these instructions on how to [Create a bot with Azure Bot Service](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-quickstart?view=azure-bot-service-4.0) to get started.
+An Azure Web Bot is required for routing between your locally hosted bot and the relay. You can use a bot you have already created or follow these instructions on how to [Create a bot with Azure Bot Service](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-quickstart?view=azure-bot-service-4.0) to get started.
 
 ## Azure Service Bus Bot Relay
 
-The Azure Service Bus Bot Relay is a GitHub project that can be compiled in either Visual Studio or VS Code and run locally to monitor your localhost address. It serves as the connection between your locally hosted bot and the service bus routing through your Azure Web Bot.
+The Azure Service Bus Bot Relay is a GitHub project that can be compiled in either Visual Studio or VS Code and run locally to monitor your localhost address. It utilizes Azure Relay, using Azure Service Bus as its backbone, and serves as the connection between your locally hosted bot and the relay routing through your Azure Web Bot.
 
 It functions like ngrok’s tunneling service by constructing a secure messaging service on Azure from which the bot can route through. In this way, you can debug your locally hosted bot on different channels.
+
+However, unlike ngrok, the relay service streams user activity by displaying the full activity object. This is particularly useful in debugging scenarios.
 
 This solution offers two options for compiling: .Net Framework and .Net Core. Using either will provide the same connectivity, however, note that:
 
 - Visual Studio can run and compile both .Net Framework and .Net Core.
-- VS Code only supports running and compiling .Net Core projects via the dotnet command.
-- .Net Framework programmatically creates a WCF relay when started. This relay is viewable online in your Azure Service Bus for the duration the relay is running locally.
+- VS Code only supports running and compiling .Net Core projects via the **dotnet** command.
+- .Net Framework programmatically creates a WCF relay when started. This relay is viewable online in your Azure Relay resource for the duration the relay is running locally.
 - .Net Core requires manually creating the hybrid connection on Azure. Hybrid connections should not be shared by multiple users as the activity from each will conflict with each other. Instead, create a separate hybrid connection for each user.
 - .Net Core provides cross-platform functionality and will run in both the Windows and Mac OS environments.
 
@@ -99,17 +107,17 @@ Before you can get started you will need a local copy of the solution. Navigate 
 
 2. In Solution Explorer, expand the **ServiceBusRelayUtil** folder.
 
-3. Open the **App.config** file and replace the following values with those from your service bus (not the hybrid connection).
+3. Open the **App.config** file and replace the following values with those from your relay (not the hybrid connection).
    
-    a. "SBNamespace" is the name of your service bus created earlier. Enter the value in place of **[your namespace]**.
+    a. "RelayNamespace" is the name of your relay created earlier. Enter the value in place of **[Your Namespace]**.
     
-    b. "SBPolicyName" is the name of the shared access policy created in steps 9 through 11 during the service bus set up process. Enter the value in place of **"RootManageSharedAccessKey"**.
+    b. "RelayName" is the name of the shared access policy created in steps 9 through 11 during the relay set up process. Enter the value in place of **[Your Relay Name]**.
     
-    c. "SBPolicyKey" is the value to the shared access policy created in steps 9 through 11 during the service bus set up process. Enter the value in place of **[your secret]**.
+    c. "PolicyName" is the value to the shared access policy created in steps 9 through 11 during the relay set up process. Enter the value in place of **[Your Shared Access Policy Name]**.
    
-    d. "SBRelayName" is the WCF relay to be used. Remember, this relay is programmatically created and only exists on your machine. Create a new, unused name and enter the value in place of **[your relay name]**.
+    d. "PolicyKey" is the WCF relay to be used. Remember, this relay is programmatically created and only exists on your machine. Create a new, unused name and enter the value in place of **[Your Policy's Key]**.
    
-    e. "TargetServiceAddress" sets the port to be used for localhost. The address and port number should match the address and port used by your bot. Enter a value in place of the "TODO" string part. For example, "http://localhost:3978".
+    e. "TargetServiceAddress" sets the port to be used for localhost. The address and port number should match the address and port used by your bot. Enter a value in place of the [PORT] string part. For example, "http://localhost:[PORT]".
    
 ![App.config](images/appConfig.jpg)
    
@@ -119,7 +127,7 @@ Before you can get started you will need a local copy of the solution. Navigate 
     
     b. Select **Settings** under Bot management to open the settings blade.
     
-    c. In the **Messaging endpoint** field, enter the service bus namespace and relay. The relay should match the relay name entered in the **App.config** file and should not exist in Azure.
+    c. In the **Messaging endpoint** field, enter the relay namespace and relay. The relay should match the relay name entered in the **App.config** file and should not exist in Azure.
     
     d. Append **"/api/messages"** to the end to create the full endpoint to be used. For example, “https://example-service-bus.servicebus.windows.net/wcf-example-relay/api/messages".
     
@@ -131,7 +139,7 @@ Before you can get started you will need a local copy of the solution. Navigate 
    
 7. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc.). User data is captured and logged as activity occurs.
 
-    - When using the Bot Framework Emulator: The endpoint entered in Emulator must be the service bus endpoint saved in your Azure Web Bot **Settings** blade, under **Messaging Endpoint**.
+    - When using the Bot Framework Emulator: The endpoint entered in Emulator must be the relay endpoint saved in your Azure Web Bot **Settings** blade, under **Messaging Endpoint**.
 
 ![botbuilder-samples/18.bot-authentication](images/BotAuthExample.jpg)
 
@@ -150,17 +158,17 @@ Before you can get started you will need a local copy of the solution. Navigate 
 
 2. In Solution Explorer, expand the **ServiceBusRelayUtilNetCore** folder.
 
-3. Open the **appsettings.json** file and replace the following values with those from your service bus hybrid connection.
+3. Open the **appsettings.json** file and replace the following values with those from your relay hybrid connection.
    
-    a. "RelayNamespace" is the name of your service bus created earlier. Enter the value in place of **[your namespace]**.
+    a. "RelayNamespace" is the name of your relay created earlier. Enter the value in place of **[Your Namespace]**.
 
-    b. "ConnectionName" is the name of the hybrid connection created in step 12. Enter the value in place of **[your relay name]**.
+    b. "RelayName" is the name of the hybrid connection created in step 12. Enter the value in place of **[Your Relay Name]**.
 
-    c. "KeyName" is the name of the shared access policy created in steps 9 through 11 during the service bus set up process. Enter the value in place of **"RootManageSharedAccessKey"**.
+    c. "PolicyName" is the name of the shared access policy created in steps 9 through 11 during the relay set up process. Enter the value in place of **[Your Shared Access Policy Name]**.
 
-    d. "Key" is the value to the shared access policy created in steps 9 through 11 during the service bus set up process. Enter the value in place of **[your secret]**.
+    d. "PolicyKey" is the value to the shared access policy created in steps 9 through 11 during the relay set up process. Enter the value in place of **[Your Policy's Key]**.
       
-    e. "TargetServiceAddress" sets the port to be used for localhost. The address and port number should match the address and port used by your bot. Enter a value in place of the **[Your Bot URL and Port]**. For example, "http://localhost:3978".
+    e. "TargetServiceAddress" sets the port to be used for localhost. The address and port number should match the address and port used by your bot. Enter a value in place of the **"http://localhost:[PORT]"**. For example, "http://localhost:3978".
    
 ![appsettings.json](images/appsettings.jpg)
    
@@ -170,7 +178,7 @@ Before you can get started you will need a local copy of the solution. Navigate 
     
     b. Select **Settings** under Bot management to open the settings blade.
     
-    c. In the **Messaging endpoint** field, enter the service bus namespace and relay.
+    c. In the **Messaging endpoint** field, enter the relay namespace and relay.
     
     d. Append **"/api/messages"** to the end to create the full endpoint to be used. For example, “https://example-service-bus.servicebus.windows.net/hc1/api/messages".
     
@@ -182,7 +190,7 @@ Before you can get started you will need a local copy of the solution. Navigate 
    
 7. Test your bot on a channel (Test in Web Chat, Skype, Teams, etc.). User data is captured and logged as activity occurs.
 
-    - When using the Bot Framework Emulator: The endpoint entered in Emulator must be the service bus endpoint saved in your Azure Web Bot **Settings** blade, under **Messaging Endpoint**.
+    - When using the Bot Framework Emulator: The endpoint entered in Emulator must be the relay endpoint saved in your Azure Web Bot **Settings** blade, under **Messaging Endpoint**.
 
 ![botbuilder-samples/18.bot-authentication](images/BotAuthExample.jpg)
 
