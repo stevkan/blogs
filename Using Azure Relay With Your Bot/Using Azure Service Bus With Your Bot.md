@@ -34,16 +34,14 @@ To get started, follow these steps:
 2. Select the **Create a resource** option in the sidebar menu.
 
 3. Search for **Relay** in the search field and select this option from the list once displayed.
-   
-![Select Relay](images/select_relay.jpg)
 
-1. Click **Create** to begin building your relay resource.
+4. Click **Create** to begin building your relay resource.
 
-2. Complete each field (Name, Subscription, Resource group, Location) to create the relay namespace.
+5. Complete each field (Name, Subscription, Resource group, Location) to create the relay namespace.
 
-3. Click **Create** to finalize the creation process.
+6. Click **Create** to finalize the creation process.
 
-4. Once completed, an overview of the deployment is shown. Click the resource name you just created, under **Resource**.
+7. Once completed, an overview of the deployment is shown. Click the resource name you just created, under **Resource**.
 
 ![Relay Deployment](images/service_bus_deployment.jpg)
 
